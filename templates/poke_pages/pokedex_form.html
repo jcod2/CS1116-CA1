@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.name.label }}
+        {{ form.name() }}
+        <br>
+        {{ form.nat_dex.label }}
+        {{ form.nat_dex() }}
+        {% for error in form.nat_dex.errors %}
+            {{error}}
+        {% endfor %}
+        <br>
+        {{ form.prim_type.label }}
+        {{ form.prim_type() }}
+        <br>
+        {{ form.sec_type.label }}
+        {{ form.sec_type() }}
+        <br>
+        {{ form.classification.label }}
+        {{ form.classification() }}
+        <br>
+        {{ form.hidden_ab.label }}
+        {{ form.hidden_ab() }}
+        <br>
+        {{ form.alt_form.label }}
+        {{ form.alt_form() }}
+        <br>
+        {{ form.leg_type.label }}
+        {{ form.leg_type() }}
+        <br>
+        {{ form.region.label }}
+        {{ form.region() }}
+        <br>
+        <section>
+        {{ form.stats.label }}
+        {{ form.stats() }}
+        {{ form.evs.label }}
+        {{ form.evs() }}
+        </section>
+        <br>
+        <h4>{{ message }}</h4>
+        {{ form.submit() }}
+        <br>
+    </form>
+
+    {% include "poke_pages/dex_table.html" %}
+
+{% endblock %}

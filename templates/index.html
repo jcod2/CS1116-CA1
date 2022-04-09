@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% block main_content %}
+<h1>Pokémon Wiki</h1>
+<p>
+    On this site you will find all information you may need need about each
+    pokémon, you can navigate the website using the navigation bar found near the
+    top of the web page. Below is a quick overview of what is available.
+</p>
+<p>
+    This site is meant as an information hub/wiki for all 898 Pokémon that currently exist 
+    in the Pokémon universe. You will find detailed pages for each Pokémon as well as pages for 
+    their alternate forms (Mega, Gigantamax, etc.) if they have one. 
+</p>
+<p>
+    If you register an account and login you will be able to save Pokémon to your favourites, you
+    can access these favourites by clicking on
+    <a href="{{ url_for('favourites') }}"><b>Saved</b></a> or your username in the
+    navigation bar.
+</p>
+<p>
+    On the <a href="{{ url_for('pokedex') }}"><b>Search</b></a> page you will be
+    able to search for specific Pokémon based on how much of the form you fill
+    out, you can fill out none of the form and met wth a table containing all
+    Pokémon or you be more specific and fill out any number of the fields to
+    narrow the search.
+</p>
+<p>
+    The <a href="{{ url_for('national_dex_home') }}"><b>Regions</b></a> page allows
+    you to search pokemon based on region and offers a quicker alternative to the
+    <a href="{{ url_for('pokedex') }}">search form</a>.
+</p>
+<p>
+    You can also find individual pages for each Pokémon by clicking on their names
+    or sprites when they viewed from a table. You will be taken to their Pokémon
+    Dex page and from there can go back and forth between pages. On these Pokédex
+    pages you will find out all sorts of information on that specific Pokémon.
+</p>
+<p>
+    Also available is a <a href="{{ url_for('random_team') }}"><b>Random Team Generator</b></a>, 
+    here you will be able to generate random teams of Pokémon. Each team will
+    six Pokémon all with a unique primary type, by default the team will be
+    generated from all 898 Pokémon but this can be narrowed down by region by
+    using the buttons available at the top of the page.
+</p>
+{% if g.user == "Admin" %}
+    <p>
+        As an administrator you can manually add or remove users from the <a href="{{ (url_for('admin')) }}">Admin</a> 
+        page. After selecting an option you will taken to a form that can be filled out. If you wish to create a user 
+        the process if the same as if the user themselves were to register, you enter a username and a password and need to 
+        confirm that password. However if you wish to delete a user it will need to be a valid username (a registered account) and to 
+        delete the account you will need to enter the administrator account password. Similarly to user account if you click 
+        on the admin username in the nav bar you will be taken to the admin page.
+    </p>
+{% endif %}
+{% endblock %}

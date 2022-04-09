@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <title>{{ title }}</title>
+        <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+        {% if g.mode == "light" %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/light/stylesheet.css') }}" />
+        {% elif g.mode == "dark" %}
+            <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/dark/stylesheet.css') }}" />
+        {% endif %}
+    </head>
+
+    <body>
+        <nav>
+            <ul>
+                {% if g.user %}
+                    {% if g.user == "Admin" %}
+                        <li><a href="{{ url_for('admin') }}"><b>{{ g.user }}</b></a></li>
+                    {% elif g.user != "Admin" %}
+                        <li><a href="{{ url_for('favourites') }}"><b>{{ g.user }}</b></a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('logout') }}"><b>Logout</b></a></li>
+                {% else %}
+                    <li><a href="{{ url_for('register') }}"><b>Register</b></a></li>
+                    <li><a href="{{ url_for('login') }}"><b>Login</b></a></li>
+                {% endif %}
+                <li>
+                    <a href="{{ url_for('pokedex') }}"><b>Search</b></a>
+                </li>
+                <li>
+                    <a href="{{ url_for('national_dex_home') }}"><b>Regions</b></a>
+                </li>
+                <li>
+                    <a href="{{ url_for('random_team') }}"><b>Team Generator</b></a>
+                </li>
+                {% if g.user %}
+                    <li>
+                        <a href="{{ url_for('favourites') }}"><b>Saved</b></a>
+                    </li>
+                {% endif %}
+                {% if g.mode == "light" %}
+                    <li><a href="{{ url_for('theme') }}"><b>Dark Mode</b></a></li>
+                {% elif g.mode == "dark" %}
+                    <li><a href="{{ url_for('theme') }}"><b>Light Mode</b></a></li>
+            {% endif %}
+            </ul>
+        </nav>
+        <main>
+            {% block main_content %}
+                
+            {% endblock %}
+        </main>
+
+        <footer>
+            <small>&copy; jcod2 | Pokémon and All Respective Images and Names are Trademark &amp; &copy; of
+                Nintendo/Game Freak 1996-2022 | <a href="{{ url_for('disclaimer') }}"><b>Copyright Disclaimer</b></a></small>
+        </footer>
+
+    </body>
+
+</html>

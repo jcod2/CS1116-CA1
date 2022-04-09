@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <h2>{{ message }}</h2>
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.user_id.label }}
+        {{ form.user_id() }}
+        {% for error in form.user_id.errors %}
+            {{ error }}
+        {% endfor %}
+        <br><br>
+        {{ form.hidden_tag() }}
+        {{ form.password.label }}
+        {{ form.password() }}
+        {% for error in form.password.errors %}
+            {{ error }}
+        {% endfor %}
+        <br><br>
+        {{ form.hidden_tag() }}
+        {{ form.confirm_password.label }}
+        {{ form.confirm_password() }}
+        {% for error in form.confirm_password.errors %}
+            {{ error }}
+        {% endfor %}
+        {{ form.submit() }}
+    </form>
+    <section class="btns">
+        <button><a href="{{ url_for('admin') }}">Back to Admin</a></button>
+    </section>
+        {% endblock %}

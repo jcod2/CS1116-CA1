@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<section class="nav-btns">
+    <button><a href="{{ url_for('dex_by_region', region='Kanto') }}">Kanto</a></button>
+    <button><a href="{{ url_for('dex_by_region', region='Johto') }}">Johto</a></button>
+    <button><a href="{{ url_for('dex_by_region', region='Hoenn') }}">Hoenn</a></button>
+    <button><a href="{{ url_for('dex_by_region', region='Sinnoh') }}">Sinnoh</a></button>
+    <button><a href="{{ url_for('dex_by_region', region='Unova') }}">Unova</a></button>
+    <button><a href="{{ url_for('dex_by_region', region='Kalos') }}">Kalos</a></button>
+    <button><a href="{{ url_for('dex_by_region', region='Alola') }}">Alola</a></button>
+    <button><a href="{{ url_for('dex_by_region', region='Galar') }}">Galar</a></button>
+</section>
+
+{% if not pokemon %}
+    <h3>No region selected, select a region above to view pokemon from that region.</h3>
+{% else %}
+    <article class="poke-entry">
+        <h2>{{ pokemon["region_of_origin"] }}{{ title }}</h2>
+        <table>
+            <tr>
+                <th scope="col">Sprite</th>
+                <th scope="col">Dex #</th>
+                <th scope="col">Name</th>
+                <th scope="col">Type 1</th>
+                <th scope="col">Type 2</th>
+                <th scope="col">Save</th>
+            </tr>
+        {% for poke in pokemon %}
+            <tr>
+                {% if poke["alternate_form_name"] %}
+                    <td><a href="{{ url_for('pokemon', pokemon_id=poke['pokemon_id']) }}"><img src="{{ url_for('static', filename = 'sprites/pokemon/'+poke['pokedex_number']|string+'-'+poke['alternate_form_name'])+'.png' }}" width="48"/></a></td>
+                {% else %}
+                    <td><a href="{{ url_for('pokemon', pokemon_id=poke['pokemon_id']) }}"><img src="{{ url_for('static', filename = 'sprites/pokemon/'+poke['pokedex_number']|string)+'.png' }}" width="48"/></a></td>
+                {% endif %}
+                <td>{{ poke["pokedex_number"] }}</td>
+                <td><a href="{{ url_for('pokemon', pokemon_id=poke['pokemon_id']) }}">{{ poke["alternate_form_name"] }} {{ poke["pokemon_name"] }}</a></td>
+                <td>{{ poke["primary_type"] }}</td>
+                <td>{{ poke["secondary_type"] }}</td>
+                <td class="btns"><button><a href="{{ url_for('add_to_favourites', pokemon_id=poke['pokemon_id']) }}">Save</a></button></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </article>
+{% endif %}
+{% endblock %}

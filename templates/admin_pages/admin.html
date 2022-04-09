@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <h2>Administrator Page</h2>
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.options.label }}
+        {{ form.options() }}
+        <br><br>
+        {{ form.submit() }}
+    </form>
+    
+{% endblock %}
