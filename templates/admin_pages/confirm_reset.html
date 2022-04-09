@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <h1>Are you sure you want to delete all user data?</h1>
+    <p>Yes will delete all user data!</p>
+    <p>No will take you back to the admin page.</p>
+    <button class="RESET"><a href="{{ url_for('reset') }}">YES</a></button>
+    <button class="RESET"><a href="{{ url_for('admin') }}">NO</a></button>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<article id="favourites-teams">
+    <h3>Your current saved team</h3>
+    {% if team %}
+        <table>
+            <th scope="col">Sprite</th>
+            <th scope="col">Name</th>
+            <th scope="col">Primary Type</th>
+            <th scope="col">Secondary Type</th>
+            {% for poke in team %}
+            <tr>
+                {% if poke["alternate_form_name"] %}
+                    <td><img src="{{ url_for('static', filename = 'sprites/pokemon/'+poke['pokedex_number']|string+'-'+poke['alternate_form_name'])+'.png' }}" width="48"/></td>
+                {% else %}
+                    <td><img src="{{ url_for('static', filename = 'sprites/pokemon/'+poke['pokedex_number']|string)+'.png' }}" width="48"/></td>
+                {% endif %}
+                <td>{{ poke["alternate_form_name"] }} {{ poke["pokemon_name"] }}</td>
+                <td>{{ poke["primary_type"] }}</td>
+                <td>{{ poke["secondary_type"] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Your saved teams are empty!</p>
+    {% endif %}
+</article>
+{% endblock %}

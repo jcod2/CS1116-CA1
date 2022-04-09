@@ -1,0 +1,5 @@
+.DS_Store
+**/*.mp4
+.vscode
+.__pycache__
+.test_files
