@@ -1,4 +1,3 @@
-# Jamie O'Donovan 121776739
 # Wed Development 2, CA1
 
 from flask import Flask, redirect, render_template, url_for, session, request, g
@@ -18,14 +17,6 @@ from user_functions import *
 # user_id: admin
 # password: admin
 # can manually add or delete users if they visit /admin, can also reset user data (delete all users and their favourites)
-
-# to improve readability and editability, i have grouped some functions into their own respective .py files and imported them
-# the file was getting pretty long, especially once i added DOCSTRINGS to functions, so did this
-
-# in most places i've left code i've tried in, have just commented it out, in python files anyway, in templates ive removed it
-# i have manually close the db anywhere i used it, because without it i would occasionally get a databse locked error
-# given the size of the pokemon table in the db, ive tried to optimise my queries where possible but some of 
-# them need most/all the data in the table
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "this-is-my-secret-key"
